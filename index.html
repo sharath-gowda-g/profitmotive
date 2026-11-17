@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profit Motive · Free business breakdowns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f3efe6;--line:#e7e1d4;--ink:#22211f;--muted:#6d685e;--red:#a4322b;--yellow:#f5dc6b;--card:#fff;--green:#2f7d5b}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background-color:var(--bg);
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:32px 32px;min-height:100vh}
+  .wrap{max-width:560px;margin:0 auto;padding:36px 18px 48px}
+  .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);font-weight:700;margin:0 0 14px}
+  h1{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:46px;line-height:1.02;margin:0 0 12px;letter-spacing:-.01em}
+  h1 span{background:var(--yellow);padding:0 6px}
+  .lead{font-size:15px;line-height:1.5;color:#3a3935;margin:0 0 22px}
+  .search{width:100%;font:inherit;font-size:15px;padding:13px 16px;border:1px solid #d8d2c4;border-radius:12px;background:#fff;outline:none;margin-bottom:16px}
+  .search:focus{border-color:var(--ink)}
+  .list{display:flex;flex-direction:column;gap:12px}
+  a.item{display:block;text-decoration:none;color:inherit;background:var(--card);border-radius:14px;padding:16px 16px 14px;
+    box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid transparent;transition:transform .12s,border-color .12s}
+  a.item:hover{border-color:#d8d2c4;transform:translateY(-1px)}
+  a.item:active{transform:scale(.99)}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+  .tag{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+  .new{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:#fff;border-radius:5px;padding:3px 7px}
+  .title{font-family:'Instrument Serif',serif;font-style:italic;font-size:27px;line-height:1.1;margin:0 0 6px}
+  .hook{font-size:14px;line-height:1.45;color:#3a3935;margin:0 0 12px}
+  .bottom{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .num{font-weight:700;font-size:15px}
+  .num small{display:block;font-weight:400;font-size:11.5px;color:var(--muted)}
+  .open{flex:none;font-size:13px;font-weight:600;background:var(--ink);color:#fff;border-radius:999px;padding:9px 14px}
+  .empty{display:none;text-align:center;color:var(--muted);font-size:14px;padding:20px}
+  .foot{margin-top:28px;background:#fff;border-radius:14px;padding:18px;text-align:center}
+  .foot p{margin:0 0 6px;font-size:14px;color:#3a3935}
+  .foot .serif{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--ink);margin-bottom:8px}
+  .foot a{display:inline-block;margin-top:8px;font-weight:600;color:#fff;background:var(--red);text-decoration:none;border-radius:999px;padding:10px 18px;font-size:14px}
+  .note{font-size:11.5px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker">Profit Motive · @profit_motive</p>
+  <h1>Every business has a <span>profit motive.</span></h1>
+  <p class="lead">Free PDF breakdowns of every reel, with every number sourced. Tap a card to open it.</p>
+
+  <input class="search" id="q" type="search" placeholder="Search: toys, springs, umbrella…" autocomplete="off">
+
+  <div class="list" id="list"></div>
+  <p class="empty" id="empty">No breakdown matches that yet. Comment it on a reel and I might make it next.</p>
+
+  <div class="foot">
+    <p class="serif">Which business should I break down next?</p>
+    <p>Comment on any reel and tell me.</p>
+    <a href="https://www.instagram.com/profit_motive/">Follow @profit_motive</a>
+  </div>
+  <p class="note">Research for education, not financial, legal or investment advice.<br>PDFs open in Google Drive's viewer.</p>
+</div>
+
+<script>
+const D = id => 'https://drive.google.com/file/d/' + id + '/view';
+const items = [
+  // Newest reel first. To add a breakdown, put it at the TOP of this list.
+  {tag:'Import Gap', title:'Springs', hook:"India's #1 spring supplier isn't China, it's Germany. Raw wire costs ₹70–120/kg here.", num:'₹1,645 Cr', sub:'imported in FY26', url:D('1QB-Jt06vi07HkWvAXuxcjI0xA4xBHYOO'), keys:'spring springs germany frontier coil wire'},
+  {tag:'Import Gap', title:'Hair clips', hook:'98% come from one country. ₹4.50 wholesale, ₹50 on Amazon. Win on design, not cost.', num:'₹380 Cr', sub:'imported last year', url:D('1wCJ_q0dq_qtYJyd11pKKHr1Zy3ATmR3q'), keys:'hair clip clips claw accessories'},
+  {tag:'Import Gap', title:'Gym equipment', hook:'76% from China and growing fast. Dumbbells are crowded; gym machines are the real gap.', num:'₹2,099 Cr', sub:'imported last year', url:D('1Z1X7XFmcN_LgodRhMgyX8f29Al59AcYm'), keys:'gym fitness dumbbell equipment machines'},
+  {tag:'Breakdown', title:'Isabgol', hook:'India grows ~98% of the world’s isabgol. Who keeps the money between the farm and the US shelf?', num:'₹463 → ₹2,830', sub:'per kg, India price vs US shelf', url:D('1BIVSlPyr9VYaWy8zY2DfG5aHNSa4CWbj'), keys:'isabgol psyllium husk agri export'},
+  {tag:'Import Gap', title:'Steel flasks', hook:'Imports crashed 93% after one quality rule. Setup, sales, profit and break-even.', num:'$114M → $8M', sub:'imports, before vs after', url:D('1L3ML_uiwWp6QSfJ7_jX7S_yewy5kTRIZ'), keys:'bottle flask steel borosil'},
+  {tag:'Import Gap', title:'Footwear', hook:'Chinese shoe imports fell from $410M to $115M. Shoe factory or sole factory?', num:'₹41 L', sub:'govt model for a small sandal unit', url:D('12kDOUAr7FpGo-bG_-jMSfcttqOe_EbCS'), keys:'shoe shoes footwear sneaker sandal sole'},
+  {tag:'Import Gap', title:'Umbrellas', hook:'A ₹100 import floor and ₹60 duty. Imports fell, Chinese parts rose. What a small unit really costs in 2026.', num:'₹352 Cr', sub:'umbrellas + parts imported, FY26', url:D('1mXNKNpUdwa0KvXSyWHy3kFSQiTpACbDw'), keys:'umbrella umbrellas popy johns kerala monsoon'},
+  {tag:'Import Gap', title:'Toys', hook:'Imports crashed 88%, then came back as Chinese parts. The soft-toy unit at 2026 prices.', num:'₹848 Cr', sub:'imported in FY26', url:D('1S2-JZcfgyb6XFntyYBvRbnCvQeg1EuLX'), keys:'toy toys soft plush funskool bis'}
+];
+const list = document.getElementById('list'), empty = document.getElementById('empty'), q = document.getElementById('q');
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function render(){
+  const t = q.value.trim().toLowerCase();
+  const latest = items[0];
+  const shown = items.filter(i => !t || (i.title+' '+i.hook+' '+i.keys).toLowerCase().includes(t));
+  list.innerHTML = shown.map(i => `
+    <a class="item" href="${i.url}" target="_blank" rel="noopener">
+      <div class="top"><span class="tag">${esc(i.tag)}</span>${i===latest?'<span class="new">New</span>':''}</div>
+      <p class="title">${esc(i.title)}</p>
+      <p class="hook">${esc(i.hook)}</p>
+      <div class="bottom"><div class="num">${esc(i.num)}<small>${esc(i.sub)}</small></div><span class="open">Open PDF →</span></div>
+    </a>`).join('');
+  empty.style.display = shown.length ? 'none' : 'block';
+}
+q.addEventListener('input', render);
+render();
+</script>
+</body>
+</html>
